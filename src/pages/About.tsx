@@ -62,9 +62,9 @@ const About = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
             {
-              name: "Анна Смирнова",
+              name: "Олег Салмин",
               role: "Основатель и директор",
-              image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=200&h=200&fit=crop&crop=faces",
+              image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952",
               bio: "Эксперт с 15-летним опытом преподавания английского языка"
             },
             {
