@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -162,7 +163,7 @@ const Classes = () => {
         ))}
       </Tabs>
       
-      {/* Class Process - Updated with images and expressive numbers */}
+      {/* Class Process - Updated with educational-focused images */}
       <div className="mt-24 max-w-5xl mx-auto">
         <h2 className="text-3xl font-display font-bold mb-12 text-center">Как проходят занятия</h2>
         
@@ -173,35 +174,35 @@ const Classes = () => {
               title: "Определение уровня и целей",
               description: "Перед началом обучения мы проводим тестирование для определения вашего текущего уровня и обсуждаем ваши цели и ожидания.",
               icon: <BookOpen className="h-6 w-6" />,
-              image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=500&fit=crop"
+              image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500&fit=crop"
             },
             {
               step: "02",
               title: "Индивидуальный план",
               description: "На основе ваших целей и уровня мы разрабатываем персональный план обучения с оптимальным форматом, интенсивностью и фокусом.",
               icon: <CalendarDays className="h-6 w-6" />,
-              image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500&fit=crop"
+              image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&fit=crop"
             },
             {
               step: "03",
               title: "Интерактивные занятия",
               description: "Каждое занятие включает теорию, практику и обратную связь. Мы используем современные методики и интерактивные материалы.",
               icon: <Video className="h-6 w-6" />,
-              image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&fit=crop"
+              image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&fit=crop"
             },
             {
               step: "04",
               title: "Регулярная практика",
               description: "Между занятиями вы выполняете домашние задания и имеете доступ к дополнительным материалам для самостоятельной практики.",
               icon: <Clock className="h-6 w-6" />,
-              image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=500&fit=crop"
+              image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500&fit=crop"
             },
             {
               step: "05",
               title: "Отслеживание прогресса",
               description: "Регулярные тесты и обратная связь помогают отслеживать прогресс и корректировать программу при необходимости.",
               icon: <Users className="h-6 w-6" />,
-              image: "https://images.unsplash.com/photo-1531545514256-b1400bc00f31?w=500&fit=crop"
+              image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=500&fit=crop"
             }
           ].map((step, index) => (
             <div key={index} className="flex flex-col md:flex-row glass rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300">
