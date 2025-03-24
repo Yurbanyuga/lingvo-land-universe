@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { BookOpen, CalendarDays, Clock, Users, Video } from 'lucide-react';
 
 const Classes = () => {
   const [activeTab, setActiveTab] = useState('individual');
@@ -161,44 +162,67 @@ const Classes = () => {
         ))}
       </Tabs>
       
-      {/* Class Process */}
+      {/* Class Process - Updated with images and expressive numbers */}
       <div className="mt-24 max-w-5xl mx-auto">
         <h2 className="text-3xl font-display font-bold mb-12 text-center">Как проходят занятия</h2>
         
-        <div className="space-y-8">
+        <div className="space-y-12">
           {[
             {
               step: "01",
               title: "Определение уровня и целей",
-              description: "Перед началом обучения мы проводим тестирование для определения вашего текущего уровня и обсуждаем ваши цели и ожидания."
+              description: "Перед началом обучения мы проводим тестирование для определения вашего текущего уровня и обсуждаем ваши цели и ожидания.",
+              icon: <BookOpen className="h-6 w-6" />,
+              image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=500&fit=crop"
             },
             {
               step: "02",
               title: "Индивидуальный план",
-              description: "На основе ваших целей и уровня мы разрабатываем персональный план обучения с оптимальным форматом, интенсивностью и фокусом."
+              description: "На основе ваших целей и уровня мы разрабатываем персональный план обучения с оптимальным форматом, интенсивностью и фокусом.",
+              icon: <CalendarDays className="h-6 w-6" />,
+              image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500&fit=crop"
             },
             {
               step: "03",
               title: "Интерактивные занятия",
-              description: "Каждое занятие включает теорию, практику и обратную связь. Мы используем современные методики и интерактивные материалы."
+              description: "Каждое занятие включает теорию, практику и обратную связь. Мы используем современные методики и интерактивные материалы.",
+              icon: <Video className="h-6 w-6" />,
+              image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&fit=crop"
             },
             {
               step: "04",
               title: "Регулярная практика",
-              description: "Между занятиями вы выполняете домашние задания и имеете доступ к дополнительным материалам для самостоятельной практики."
+              description: "Между занятиями вы выполняете домашние задания и имеете доступ к дополнительным материалам для самостоятельной практики.",
+              icon: <Clock className="h-6 w-6" />,
+              image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=500&fit=crop"
             },
             {
               step: "05",
               title: "Отслеживание прогресса",
-              description: "Регулярные тесты и обратная связь помогают отслеживать прогресс и корректировать программу при необходимости."
+              description: "Регулярные тесты и обратная связь помогают отслеживать прогресс и корректировать программу при необходимости.",
+              icon: <Users className="h-6 w-6" />,
+              image: "https://images.unsplash.com/photo-1531545514256-b1400bc00f31?w=500&fit=crop"
             }
           ].map((step, index) => (
-            <div key={index} className="flex items-start glass p-6 rounded-xl">
-              <div className="h-12 w-12 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
-                <span className="text-primary font-semibold">{step.step}</span>
+            <div key={index} className="flex flex-col md:flex-row glass rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300">
+              <div className="md:w-2/5 relative">
+                <img 
+                  src={step.image} 
+                  alt={step.title}
+                  className="w-full h-64 md:h-full object-cover"
+                />
+                <div className="absolute top-4 left-4 bg-primary text-primary-foreground text-2xl font-bold h-16 w-16 rounded-full flex items-center justify-center shadow-lg">
+                  {step.step}
+                </div>
               </div>
-              <div className="ml-6">
-                <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+              
+              <div className="md:w-3/5 p-6 md:p-8 flex flex-col justify-center">
+                <div className="flex items-center mb-4">
+                  <div className="mr-3 text-primary">
+                    {step.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold">{step.title}</h3>
+                </div>
                 <p className="text-foreground/80">{step.description}</p>
               </div>
             </div>
