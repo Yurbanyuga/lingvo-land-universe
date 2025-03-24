@@ -31,10 +31,10 @@ const About = () => {
         
         <div className="order-1 lg:order-2 relative">
           <div className="absolute -right-4 -top-4 w-24 h-24 bg-primary/10 rounded-full" />
-          <div className="relative glass rounded-3xl overflow-hidden shadow-xl">
+          <div className="relative glass rounded-3xl overflow-hidden shadow-xl p-8">
             <img 
-              src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b" 
-              alt="Lingvo Land office" 
+              src="/lovable-uploads/17dc4d0e-fc22-4671-b09c-dfcfa598062e.png" 
+              alt="Lingvo Land language studio" 
               className="w-full h-auto"
             />
           </div>
