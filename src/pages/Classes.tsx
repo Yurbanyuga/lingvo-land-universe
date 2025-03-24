@@ -1,10 +1,10 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { BookOpen, CalendarDays, Clock, Users, Video } from 'lucide-react';
+import EnglishTest from '@/components/EnglishTest';
 
 const Classes = () => {
   const [activeTab, setActiveTab] = useState('individual');
@@ -239,6 +239,15 @@ const Classes = () => {
         <Button asChild size="lg" className="rounded-full">
           <Link to="/start-free">Записаться на бесплатный урок</Link>
         </Button>
+      </div>
+      
+      {/* English Language Test */}
+      <div className="mt-24 text-center max-w-5xl mx-auto">
+        <h2 className="text-3xl font-display font-bold mb-6">Проверьте свой уровень английского</h2>
+        <p className="text-lg mb-8 max-w-3xl mx-auto">
+          Пройдите короткий тест, чтобы определить ваш текущий уровень владения английским языком и получить рекомендации по обучению.
+        </p>
+        <EnglishTest />
       </div>
     </div>
   );
