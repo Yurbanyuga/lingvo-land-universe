@@ -28,11 +28,11 @@ const Index = () => {
             <div className="relative h-96 md:h-auto animate-fade-in">
               <div className="absolute -right-4 -top-4 md:-right-6 md:-top-6 w-24 h-24 md:w-32 md:h-32 bg-primary/10 rounded-full" />
               <div className="absolute -left-4 -bottom-4 md:-left-6 md:-bottom-6 w-24 h-24 md:w-32 md:h-32 bg-primary/10 rounded-full" />
-              <div className="relative h-full glass rounded-3xl overflow-hidden shadow-xl">
+              <div className="relative h-full glass rounded-3xl overflow-hidden shadow-xl p-8 flex items-center justify-center">
                 <img 
-                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" 
-                  alt="Student learning English online" 
-                  className="w-full h-full object-cover"
+                  src="/lovable-uploads/84e3b0b5-583d-47e6-96a7-8c666861bce4.png" 
+                  alt="Lingvo Land language studio logo" 
+                  className="w-full h-auto max-w-md"
                 />
               </div>
             </div>
