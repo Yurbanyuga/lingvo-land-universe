@@ -1,8 +1,56 @@
 
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 
+// Тип для данных контента
+type ContentData = {
+  hero: {
+    title: string;
+    description: string;
+  };
+  features: {
+    title: string;
+    description: string;
+  };
+  cta: {
+    title: string;
+    description: string;
+  };
+};
+
+// Исходные данные контента
+const defaultContent: ContentData = {
+  hero: {
+    title: 'Погрузитесь в мир <span class="text-primary">английского языка</span> вместе с Lingvo Land',
+    description: 'Инновационные методики, опытные преподаватели и гибкий график обучения помогут вам овладеть английским легко и эффективно.'
+  },
+  features: {
+    title: 'Почему выбирают нас',
+    description: 'Lingvo Land — это современная онлайн-школа, которая делает обучение английскому языку эффективным и увлекательным'
+  },
+  cta: {
+    title: 'Готовы начать говорить на английском уверенно?',
+    description: 'Присоединяйтесь к тысячам студентов, которые уже изучают английский с Lingvo Land. Первый урок абсолютно бесплатно!'
+  }
+};
+
 const Index = () => {
+  const [content, setContent] = useState<ContentData>(defaultContent);
+
+  // Загрузка контента из localStorage при монтировании компонента
+  useEffect(() => {
+    const savedContent = localStorage.getItem('siteContent');
+    if (savedContent) {
+      try {
+        const parsedContent = JSON.parse(savedContent);
+        setContent(parsedContent);
+      } catch (error) {
+        console.error('Error parsing saved content:', error);
+      }
+    }
+  }, []);
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -10,11 +58,12 @@ const Index = () => {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="space-y-8 animate-slide-up">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-pretty">
-                Погрузитесь в мир <span className="text-primary">английского языка</span> вместе с Lingvo Land
-              </h1>
+              <h1 
+                className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-pretty"
+                dangerouslySetInnerHTML={{ __html: content.hero.title }}
+              />
               <p className="text-lg md:text-xl text-foreground/80 text-pretty max-w-xl">
-                Инновационные методики, опытные преподаватели и гибкий график обучения помогут вам овладеть английским легко и эффективно.
+                {content.hero.description}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild size="lg" className="rounded-full">
@@ -30,7 +79,7 @@ const Index = () => {
               <div className="absolute -left-4 -bottom-4 md:-left-6 md:-bottom-6 w-24 h-24 md:w-32 md:h-32 bg-primary/10 rounded-full" />
               <div className="relative h-full glass rounded-3xl overflow-hidden shadow-xl p-8 flex items-center justify-center">
                 <img 
-                  src="/lovable-uploads/84e3b0b5-583d-47e6-96a7-8c666861bce4.png" 
+                  src="/lovable-uploads/17dc4d0e-fc22-4671-b09c-dfcfa598062e.png" 
                   alt="Lingvo Land language studio logo" 
                   className="w-full h-auto max-w-md"
                 />
@@ -44,9 +93,9 @@ const Index = () => {
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">Почему выбирают нас</h2>
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">{content.features.title}</h2>
             <p className="text-lg text-foreground/80 max-w-3xl mx-auto">
-              Lingvo Land — это современная онлайн-школа, которая делает обучение английскому языку эффективным и увлекательным
+              {content.features.description}
             </p>
           </div>
           
@@ -94,10 +143,10 @@ const Index = () => {
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-primary/5">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
-            Готовы начать говорить на английском уверенно?
+            {content.cta.title}
           </h2>
           <p className="text-lg text-foreground/80 mb-8 max-w-3xl mx-auto">
-            Присоединяйтесь к тысячам студентов, которые уже изучают английский с Lingvo Land. Первый урок абсолютно бесплатно!
+            {content.cta.description}
           </p>
           <Button asChild size="lg" className="rounded-full px-8">
             <Link to="/start-free">Начать бесплатно</Link>
