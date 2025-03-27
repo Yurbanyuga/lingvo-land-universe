@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -51,7 +50,6 @@ import {
   Palette
 } from 'lucide-react';
 
-// Типы блоков
 const BLOCK_TYPES = {
   HERO: 'hero',
   TEXT: 'text',
@@ -60,7 +58,6 @@ const BLOCK_TYPES = {
   IMAGE: 'image'
 };
 
-// Схема для основного контента
 const contentSchema = z.object({
   title: z.string().min(2, {
     message: "Заголовок должен содержать не менее 2 символов",
@@ -77,19 +74,16 @@ const contentSchema = z.object({
   }),
 });
 
-// Схема для героя
 const heroSchema = contentSchema.extend({
   ctaText: z.string().optional(),
   ctaLink: z.string().optional(),
   imageUrl: z.string().optional(),
 });
 
-// Схема для обычного текста
 const textSchema = contentSchema.extend({
   content: z.string(),
 });
 
-// Схема для блока с возможностями
 const featuresSchema = contentSchema.extend({
   items: z.array(z.object({
     title: z.string(),
@@ -98,19 +92,16 @@ const featuresSchema = contentSchema.extend({
   })).default([]),
 });
 
-// Схема для призыва к действию
 const ctaSchema = contentSchema.extend({
   buttonText: z.string(),
   buttonLink: z.string(),
 });
 
-// Схема для изображения
 const imageSchema = contentSchema.extend({
   imageUrl: z.string(),
   alt: z.string().default(''),
 });
 
-// Демо-данные для контента
 const initialContent = {
   sections: [
     {
@@ -137,7 +128,7 @@ const initialContent = {
         items: [
           {
             title: "Индивидуальный подход",
-            description: "Адаптируем программу под ваши цели и особенности восприятия информации",
+            description: "Адаптируем про��рамму под ваши цели и особенности восприятия информации",
             icon: "user"
           },
           {
@@ -176,7 +167,6 @@ const initialContent = {
   ]
 };
 
-// Компонент для карточки блока
 const BlockCard = ({ block, onEdit, onDelete, onMoveUp, onMoveDown, isFirst, isLast }) => {
   const getBlockIcon = (type) => {
     switch (type) {
@@ -258,7 +248,6 @@ const BlockCard = ({ block, onEdit, onDelete, onMoveUp, onMoveDown, isFirst, isL
   );
 };
 
-// Компонент редактора блока
 const BlockEditor = ({ block, onSave, onCancel }) => {
   let formSchema;
   
@@ -598,7 +587,6 @@ const AdminContent = () => {
   const [addingBlockType, setAddingBlockType] = useState(null);
   const { toast } = useToast();
 
-  // Загрузка содержимого при монтировании
   useEffect(() => {
     const savedContent = localStorage.getItem('siteContent');
     if (savedContent) {
@@ -646,7 +634,7 @@ const AdminContent = () => {
   };
 
   const handleAddNewBlock = (type) => {
-    const newBlock = {
+    const baseBlock = {
       id: Date.now().toString(),
       type,
       data: {
@@ -660,25 +648,58 @@ const AdminContent = () => {
       }
     };
     
-    // Добавляем дополнительные данные в зависимости от типа блока
+    let newBlock;
+    
     if (type === BLOCK_TYPES.HERO) {
-      newBlock.data.ctaText = 'Кнопка';
-      newBlock.data.ctaLink = '/';
-    } else if (type === BLOCK_TYPES.TEXT) {
-      newBlock.data.content = 'Введите содержимое здесь...';
-    } else if (type === BLOCK_TYPES.FEATURES) {
-      newBlock.data.items = [
-        { 
-          title: 'Особенность 1', 
-          description: 'Описание особенности' 
+      newBlock = {
+        ...baseBlock,
+        data: {
+          ...baseBlock.data,
+          ctaText: 'Кнопка',
+          ctaLink: '/'
         }
-      ];
+      };
+    } else if (type === BLOCK_TYPES.TEXT) {
+      newBlock = {
+        ...baseBlock,
+        data: {
+          ...baseBlock.data,
+          content: 'Введите содержимое здесь...'
+        }
+      };
+    } else if (type === BLOCK_TYPES.FEATURES) {
+      newBlock = {
+        ...baseBlock,
+        data: {
+          ...baseBlock.data,
+          items: [
+            { 
+              title: 'Особенность 1', 
+              description: 'Описание особенности' 
+            }
+          ]
+        }
+      };
     } else if (type === BLOCK_TYPES.CTA) {
-      newBlock.data.buttonText = 'Кнопка';
-      newBlock.data.buttonLink = '/';
+      newBlock = {
+        ...baseBlock,
+        data: {
+          ...baseBlock.data,
+          buttonText: 'Кнопка',
+          buttonLink: '/'
+        }
+      };
     } else if (type === BLOCK_TYPES.IMAGE) {
-      newBlock.data.imageUrl = '/placeholder.svg';
-      newBlock.data.alt = 'Изображение';
+      newBlock = {
+        ...baseBlock,
+        data: {
+          ...baseBlock.data,
+          imageUrl: '/placeholder.svg',
+          alt: 'Изображение'
+        }
+      };
+    } else {
+      newBlock = baseBlock;
     }
     
     setEditingBlock(newBlock);
